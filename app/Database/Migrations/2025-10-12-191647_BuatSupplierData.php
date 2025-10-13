@@ -15,6 +15,7 @@ class BuatSupplierData extends Migration
             'dirubah' => ['type' => 'datetime', 'null' => true]
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addKey('nama');
         $this->forge->createTable('sp_supplier_data');
     }
 
