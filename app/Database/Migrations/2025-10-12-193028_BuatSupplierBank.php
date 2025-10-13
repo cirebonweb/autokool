@@ -19,12 +19,12 @@ class BuatSupplierBank extends Migration
             'dirubah' => ['type' => 'datetime', 'null' => true]
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('supplier_id', 'supplier', 'id', 'NO ACTION', 'CASCADE');
-        $this->forge->createTable('supplier_bank');
+        $this->forge->addForeignKey('supplier_id', 'sp_supplier_data', 'id', 'NO ACTION', 'CASCADE');
+        $this->forge->createTable('sp_supplier_bank');
     }
 
     public function down()
     {
-        $this->forge->dropTable('supplier_bank');
+        $this->forge->dropTable('sp_supplier_bank');
     }
 }

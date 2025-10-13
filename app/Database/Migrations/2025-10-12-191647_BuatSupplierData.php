@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class BuatSupplier extends Migration
+class BuatSupplierData extends Migration
 {
     public function up()
     {
@@ -15,11 +15,11 @@ class BuatSupplier extends Migration
             'dirubah' => ['type' => 'datetime', 'null' => true]
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('supplier');
+        $this->forge->createTable('sp_supplier_data');
     }
 
     public function down()
     {
-        $this->forge->dropTable('supplier');
+        $this->forge->dropTable('sp_supplier_data');
     }
 }
