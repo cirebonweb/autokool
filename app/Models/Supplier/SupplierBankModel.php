@@ -17,9 +17,6 @@ class SupplierBankModel extends Model
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 
-    protected array $casts = [];
-    protected array $castHandlers = [];
-
     // Dates
     protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
@@ -44,7 +41,7 @@ class SupplierBankModel extends Model
 		return $this
         ->from('sp_supplier_bank a')
         ->select('a.id bank_id, b.nama, a.kode, a.bank, a.rekening, a.pemilik, a.dibuat, a.dirubah')
-        ->join('sp_supplier b', 'b.id = a.supplier_id')
+        ->join('sp_supplier_data b', 'b.id = a.supplier_id')
         ->findAll();
 	}
 }
