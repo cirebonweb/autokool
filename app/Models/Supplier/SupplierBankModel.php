@@ -39,9 +39,9 @@ class SupplierBankModel extends Model
     public function tabel()
 	{
 		return $this
-        ->from('sp_supplier_bank a')
-        ->select('a.id bank_id, b.nama, a.kode, a.bank, a.rekening, a.pemilik, a.dibuat, a.dirubah')
-        ->join('sp_supplier_data b', 'b.id = a.supplier_id')
+        ->select('sp_supplier_bank.id bank_id, nama, kode, bank, rekening, pemilik, sp_supplier_bank.dibuat, sp_supplier_bank.dirubah')
+        ->join('sp_supplier_data', 'sp_supplier_data.id = sp_supplier_bank.supplier_id', 'left')
         ->findAll();
 	}
+
 }
