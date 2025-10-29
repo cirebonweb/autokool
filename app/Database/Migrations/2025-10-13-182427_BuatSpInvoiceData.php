@@ -15,12 +15,12 @@ class BuatSpInvoiceData extends Migration
             'mengajukan' => ['type' => 'varchar', 'constraint' => 100],
             'mengetahui' => ['type' => 'varchar', 'constraint' => 100],
             'menyetujui' => ['type' => 'varchar', 'constraint' => 100],
-            'total' => ['type' => 'decimal', 'constraint' => 15,2],
+            'total' => ['type' => 'decimal', 'constraint' => 15, 2],
             'dibuat' => ['type' => 'datetime', 'null' => true],
             'dirubah' => ['type' => 'datetime', 'null' => true]
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addKey('tanggal');
+        $this->forge->addUniqueKey('tanggal');
         $this->forge->createTable('sp_invoice_data');
     }
 

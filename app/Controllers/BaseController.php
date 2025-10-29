@@ -35,13 +35,15 @@ abstract class BaseController extends Controller
      *
      * @var list<string>
      */
-    protected $helpers = [];
+    protected $helpers = ['url'];
 
     /**
      * Be sure to declare properties for any property fetch you initialized.
      * The creation of dynamic property is deprecated in PHP 8.2.
      */
-    // protected $session;
+    protected $session;
+    protected $validation;
+    protected $db;
 
     /**
      * @return void
@@ -53,6 +55,8 @@ abstract class BaseController extends Controller
 
         // Preload any models, libraries, etc, here.
 
-        // E.g.: $this->session = service('session');
+        $this->session = service('session');
+        $this->validation = service('validation');
+        $this->db = \Config\Database::connect();
     }
 }

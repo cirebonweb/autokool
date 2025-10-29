@@ -37,11 +37,18 @@ class SupplierBankModel extends Model
     protected $cleanValidationRules = true;
 
     public function tabel()
-	{
-		return $this
-        ->select('sp_supplier_bank.id bank_id, nama, kode, bank, rekening, pemilik, sp_supplier_bank.dibuat, sp_supplier_bank.dirubah')
-        ->join('sp_supplier_data', 'sp_supplier_data.id = sp_supplier_bank.supplier_id', 'left')
-        ->findAll();
-	}
+    {
+        return $this
+            ->select('sp_supplier_bank.id bank_id, nama, kode, bank, rekening, pemilik, sp_supplier_bank.dibuat, sp_supplier_bank.dirubah')
+            ->join('sp_supplier_data', 'sp_supplier_data.id = sp_supplier_bank.supplier_id', 'left')
+            ->findAll();
+    }
 
+    public function getId()
+    {
+        return $this
+            ->select('id, supplier_id')
+            ->orderBy('supplier_id', 'ASC')
+            ->findAll();
+    }
 }

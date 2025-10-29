@@ -17,9 +17,16 @@ class SupplierBank extends BaseController
     public function tabel()
     {
         $data = $this->supplierBankModel->tabel();
-        return $this->response
-            ->setHeader('Access-Control-Allow-Origin', '*')
-            ->setJSON($data);
+        return $this->response->setHeader('Access-Control-Allow-Origin', '*')->setJSON($data);
+    }
+
+    public function getId()
+    {
+        $data = $this->supplierBankModel->getId();
+        if (empty($data)) {
+            return $this->response->setJSON(['success' => false, 'messages' => 'ID Supplier Bank tidak ditemukan']);
+        }
+        return $this->response->setJSON(['success'  => true, 'data' => $data]);
     }
 
     public function simpan()

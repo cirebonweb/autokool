@@ -26,14 +26,46 @@ class InvoiceDataModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'tanggal' => ['label' => 'Tanggal', 'rules' => 'required|valid_date'],
+        'tanggal' => ['label' => 'Tanggal', 'rules' => 'required|valid_date|is_unique[sp_invoice_data.tanggal]'],
         'divisi' => ['label' => 'Divisi', 'rules' => 'required|string|max_length[100]'],
         'mengajukan' => ['label' => 'Mengajukan', 'rules' => 'required|string|max_length[100]'],
         'mengetahui' => ['label' => 'Mengetahui', 'rules' => 'required|string|max_length[100]'],
         'menyetujui' => ['label' => 'Menyetujui', 'rules' => 'required|string|max_length[100]'],
-        'total' => ['label' => 'Total', 'rules' => 'required|decimal']
+        // 'total' => ['label' => 'Total', 'rules' => 'required|decimal']
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
+
+    public function getIdTgl($tanggal)
+    {
+        return $this
+            ->select('id')
+            ->where('tanggal', $tanggal)
+            ->first();
+    }
+
+    public function getTahun()
+    {
+        return $this
+            ->select('YEAR(tanggal) tahun')
+            ->groupBy('tahun')
+            ->findAll();
+    }
+
+    public function getBulan()
+    {
+        return $this
+            ->select('MONTH(tanggal) bulan')
+            ->groupBy('bulan')
+            ->findAll();
+    }
+
+    public function getTtd($id)
+    {
+        return $this
+            ->select('tanggal, divisi, mengajukan, mengetahui, menyetujui')
+            ->where('id', $id)
+            ->first();
+    }
 }

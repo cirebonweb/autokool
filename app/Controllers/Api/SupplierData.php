@@ -22,6 +22,15 @@ class SupplierData extends BaseController
             ->setJSON($data);
     }
 
+    public function getId()
+    {
+        $data = $this->supplierDataModel->getId();
+        if (empty($data)) {
+            return $this->response->setJSON(['success' => false, 'messages' => 'ID Supplier Data tidak ditemukan']);
+        }
+        return $this->response->setJSON(['success'  => true, 'data' => $data]);
+    }
+
     public function simpan()
     {
         try {

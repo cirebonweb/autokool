@@ -52,12 +52,12 @@ class InvoiceMaster extends BaseController
                 return $this->response->setJSON(['success'  => true, 'messages' => lang("App.update-success")]);
             }
         } catch (\Throwable $e) {
-            log_message('error', '[Api\Supplier:simpan] ' . $e->getMessage());
+            log_message('error', '[Api\InvoiceMaster::simpan] ' . $e->getMessage());
             return $this->response->setJSON(['success' => false, 'messages' => $e->getMessage()]);
         }
     }
 
-    public function detail($id = null)
+    public function detail($id)
     {
         $data = $this->invoiceMasterModel->find($id);
 

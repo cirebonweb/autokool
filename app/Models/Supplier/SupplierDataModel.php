@@ -31,4 +31,12 @@ class SupplierDataModel extends Model
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
+
+    public function getId()
+    {
+        return $this
+            ->select('id, nama')
+            ->orderBy('nama', 'ASC')
+            ->findAll();
+    }
 }
