@@ -81,7 +81,7 @@ class InvoiceSupplierModel extends Model
             ->join('sp_supplier_data a', 'a.id = sp_invoice_supplier.supplier_data_id')
             ->join('sp_supplier_bank b', 'b.id = sp_invoice_supplier.supplier_bank_id')
             ->where('invoice_data_id', $invoiceId)
-            ->orderBy('supplier_data_id', 'ASC')
+            ->orderBy('sp_invoice_supplier.id', 'ASC')
             ->findAll();
     }
 
